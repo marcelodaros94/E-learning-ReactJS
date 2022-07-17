@@ -1,15 +1,11 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css';
-import NavBar from './components/NavBar/NavBar'
-import CourseList from './components/CourseList/CourseList'
+import AppRouter from './components/AppRouter/AppRouter'
 
 function App() {
   return (
-    <>
-      <NavBar/>
-      <CourseList/>
-    </>
+    <AppRouter />
   );
 }
 
