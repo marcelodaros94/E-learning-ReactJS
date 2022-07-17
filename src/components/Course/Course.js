@@ -5,7 +5,7 @@ export default function Course({ data }){
     
     return (
         <div className="course">
-            <img src={'/assets/img/courses/'+data.img}/>
+            <img src={'./assets/img/courses/'+data.img}/>
             <h3>{data.name}</h3>
             <p>{data.description}</p>
             <Button>Comprar</Button>
