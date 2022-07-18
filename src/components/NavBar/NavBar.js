@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { BsFillPersonFill } from 'react-icons/bs';
 import {Link} from 'react-router-dom'
+import './NavBar.css'
 
 function NavBar() {
   return (

@@ -1,0 +1,16 @@
+@media screen and (max-width:768px){
+    .navbar-collapse {
+        order: 4;
+    }
+    .nav-item.dropdown {
+        order: 3;
+    }.navbar-brand {
+        order: 2;
+    }
+    .navbar-toggler {
+        order: 1;
+    }.dropdown-menu[data-bs-popper]{
+        right:0;
+        left: auto;
+    }
+}
