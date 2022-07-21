@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai';
 export default function Details({ details }){
-    if (details === null) {
+    if (details === undefined) {
         return <h2>Loading...</h2>;
     }
     return (

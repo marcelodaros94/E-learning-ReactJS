@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import './Course.css';
+import {Link} from 'react-router-dom'
 export default function Course({ data }){
     
     return (
@@ -8,7 +9,7 @@ export default function Course({ data }){
             <img src={process.env.PUBLIC_URL+'/assets/img/courses/'+data.img}/>
             <h3>{data.name}</h3>
             <p>{data.description}</p>
-            <Button>Comprar</Button>
+            <Button><Link to={`/course/1`}>Comprar</Link></Button>
         </div>
 
     )
