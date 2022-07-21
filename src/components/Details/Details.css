@@ -1,0 +1,9 @@
+.detail-cont svg {
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.detail-cont{
+    position:relative;
+    padding-left:25px;
+}

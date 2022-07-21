@@ -9,7 +9,7 @@ export default function Course({ data }){
             <img src={process.env.PUBLIC_URL+'/assets/img/courses/'+data.img}/>
             <h3>{data.name}</h3>
             <p>{data.description}</p>
-            <Button><Link to={`/course/1`}>Comprar</Link></Button>
+            <Link className="btn btn-outline-success btn-lg" to={`/course/1`}>Comprar</Link>
         </div>
 
     )

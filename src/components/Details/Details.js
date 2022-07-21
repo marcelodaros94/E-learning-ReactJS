@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { AiFillPlayCircle } from 'react-icons/ai';
-export default function Details({ details }){
+import './Details.css'
+
+export default function Details({ details, currentChanger }){
     if (details === undefined) {
         return <h2>Loading...</h2>;
     }
@@ -8,7 +10,7 @@ export default function Details({ details }){
         <>
             {
                 details.map(detail => 
-                    <div><AiFillPlayCircle/> { detail.name }</div>    
+                    <div className="detail-cont" onClick={() => currentChanger(detail)}><AiFillPlayCircle/><b>{ detail.name }</b>. { detail.description }</div>    
                 )
             }
         </>

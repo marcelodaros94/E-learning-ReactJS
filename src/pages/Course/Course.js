@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Video from '../../components/Video/Video'
 import Details from '../../components/Details/Details'
+
 export default function Course(){
     const [course, setCourse] = useState([])
     const [current, setCurrent] = useState([])
@@ -14,18 +15,15 @@ export default function Course(){
         sessions: [
             {
                 id: 11,
-                name: 'Introducción',
+                name: 'Introducción al curso',
+                description: 'Presentación de los temas a tratar a lo largo del curso',
                 video: 'intro.mp4'
             },
             {
                 id: 12,
                 name: 'Generación de emociones',
-                video: 'intro.mp4'
-            },
-            {
-                id: 13,
-                name: 'El doble giro',
-                video: 'intro.mp4'
+                description: 'El nivel de desarrollo del personaje permite la conexión con el público',
+                video: 'emociones.mp4'
             }
         ]        
     }
@@ -55,7 +53,7 @@ export default function Course(){
                         <Video data={ current } />
                     </div> 
                     <div className="col-md-6">
-                         <Details details={ course.sessions }/>
+                         <Details details={ course.sessions }  currentChanger={setCurrent} />
                     </div> 
                 </div>
             </div>    
