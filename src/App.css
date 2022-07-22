@@ -1,6 +1,9 @@
 section > .container{
   margin: 20px auto;
 }
+.progress {
+  margin-top:5px;
+}
 @media screen and (min-width: 769px){
   h3 {
     line-height: 1.33;
