@@ -4,21 +4,21 @@ import CircularProgress from '../CircularProgress/CircularProgress'
 export default function CourseList(){  
     const [loader, setLoader] = useState(true)
     const [courses, setCourses] = useState([])
-    const dataCourses=[
+    const dataCourses=[/*
         {
             id: 1,
             name: 'La influencia de la lucha mexicana',
             description: 'Todo sobre uno de los estilos más populares, que va más allá de acrobacias elevadas y una tradición de máscaras',
             price: 25.00,
             img: 'tiger_pegasus.jpg'
-        },
+        },*/
         {
             id: 2,
-            name: 'Psicología del Wrestling',
+            name: 'Psicología del Pro Wrestling',
             description: 'Siendo la lucha libre una narrativa más que una simple secuencia, llegamos a algo llamado la suspensión de la incredulidad',
             price: 25.00,
             img: 'rock_mankind.webp'
-        },
+        }/*,
         {
             id: 3,
             name: 'Puroresu y la cultura japonesa',
@@ -32,7 +32,7 @@ export default function CourseList(){
             description: 'Un viaje a través de las contiendas que marcaron un antes y un después en la lucha profesional americana',
             price: 20.00,
             img: 'hart.jpg'
-        }
+        }*/
     ]  
     const getCourses = new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -53,6 +53,7 @@ export default function CourseList(){
         <section>
             <div className="container">
                 <h2>Cursos Destacados</h2>
+                <hr/>
                 <div className="section__cont row">
                     {
                         loader

@@ -1,3 +1,8 @@
 section > .container{
   margin: 20px auto;
 }
+@media screen and (min-width: 769px){
+  h3 {
+    line-height: 1.33;
+  }
+}
