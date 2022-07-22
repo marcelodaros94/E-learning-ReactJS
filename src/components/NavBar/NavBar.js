@@ -10,12 +10,17 @@ function NavBar() {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
-        <Navbar.Brand><Link to={`/home`}>E-Learning Platform</Link></Navbar.Brand>
+        <Navbar.Brand>
+          <Link to={`/home`}>
+            <img src={process.env.PUBLIC_URL+'/assets/img/logo/logo.svg'}/>
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link><Link to={`/home`}>Inicio</Link></Nav.Link>
-          </Nav>
+                <Nav className="me-auto">
+                  <Nav.Link><Link to={`/dashboard`}>Dashboard</Link></Nav.Link>
+                  <Nav.Link><Link to={`/login`}>Ingresar</Link></Nav.Link>
+                </Nav>
         </Navbar.Collapse>
         
         <NavDropdown title={<BsFillPersonFill />} id="basic-nav-dropdown">

@@ -2,16 +2,25 @@
     right:0;
     left: auto;
 }
-@media screen and (max-width:768px){
-    .navbar-collapse {
-        order: 4;
+@media screen and (min-width:769px){
+    #basic-navbar-nav{
+        display:none !important;
     }
-    .nav-item.dropdown {
-        order: 3;
-    }.navbar-brand {
+    .navbar-collapse {
+        display:none !important;
+    }
+}
+@media screen and (max-width:768px){
+    .navbar-toggler {
         order: 2;
     }
+    .navbar-collapse {
+        order: 3;
+    }
+    #basic-nav-dropdown{
+        display:none;
+    }
     .navbar-toggler {
-        order: 1;
+        padding: 5px;
     }
 }
