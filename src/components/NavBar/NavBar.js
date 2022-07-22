@@ -19,10 +19,10 @@ function NavBar() {
         </Navbar.Collapse>
         
         <NavDropdown title={<BsFillPersonFill />} id="basic-nav-dropdown">
-          <NavDropdown.Item>Dashboard</NavDropdown.Item>
+          <NavDropdown.Item>Dashboard (En construcción)</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item>
-          On/Off Session
+          <Link to={`/login`}>Ingresar</Link>
           </NavDropdown.Item>
         </NavDropdown>
         

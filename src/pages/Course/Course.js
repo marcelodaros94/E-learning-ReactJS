@@ -22,7 +22,7 @@ export default function Course(){
             {
                 id: 12,
                 name: 'Generación de emociones',
-                description: 'El nivel de desarrollo del personaje permite la conexión con el público',
+                description: 'Ejemplificando cómo el desarrollo del personaje permite conectar',
                 video: 'emociones.mp4'
             }
         ]        
