@@ -15,8 +15,11 @@ export default function AppRouter(){
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/course/:id" element={<Course/>} />
-            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
+            {localStorage.getItem('auth_token') ? (
+                <Route path="/dashboard" element={<Dashboard />} />
+            )
+            : ( <></> )}            
             <Route path="/register" element={<Register />} />
         </Routes>
     </BrowserRouter>

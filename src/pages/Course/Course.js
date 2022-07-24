@@ -46,12 +46,16 @@ export default function Course(){
         <section>
             <div className='container'>
                 <div className='row'>
+                  {localStorage.getItem('auth_token') !== null ? 
                     <div class="col-md-6">
                         <h1>{ course.name }</h1>
                         <hr></hr>
                         <h2>Introducción</h2>
                         <Video data={ current } />
-                    </div> 
+                    </div> :
+                    <div class="col-md-6">
+                        <p>Inicia sesión para acceder el contenido</p>
+                    </div> }
                     <div className="col-md-6">
                          <Details details={ course.sessions }  currentChanger={setCurrent} />
                     </div> 
