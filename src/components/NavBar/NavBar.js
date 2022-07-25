@@ -21,7 +21,7 @@ function NavBar() {
       redirect: 'follow'
       };
 
-      let response = await fetch("http://127.0.0.1:8000/api/auth/logout", requestOptions);
+      let response = await fetch(process.env.REACT_APP_API+"/api/auth/logout", requestOptions);
       let json = await response.json();
       if(json.success){
           localStorage.removeItem('auth_token');

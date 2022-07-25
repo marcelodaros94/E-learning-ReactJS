@@ -23,7 +23,7 @@ export default function Login(){
         redirect: 'follow'
         };
 
-        let response = await fetch("http://127.0.0.1:8000/api/auth/login", requestOptions);
+        let response = await fetch(process.env.REACT_APP_API+"/api/auth/login", requestOptions);
         let json = await response.json();
         
         if(json.access_token !== undefined){
