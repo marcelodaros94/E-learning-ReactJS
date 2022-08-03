@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useDispatch } from 'react-redux'
+import { login } from '../../features/userSlice'
 
 export default function Login(){
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     async function handleSubmit(event) {        
 
         event.preventDefault();
-
+        
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
+        
+        let request = {
             "email": event.currentTarget.elements.loginEmail.value,
             "password": event.currentTarget.elements.loginPassword.value
-        });
+        }
+
+        var raw = JSON.stringify(request);
 
         var requestOptions = {
         method: 'POST',
@@ -26,7 +31,12 @@ export default function Login(){
         let response = await fetch(process.env.REACT_APP_API+"/api/auth/login", requestOptions);
         let json = await response.json();
         
-        if(json.access_token !== undefined){
+        if(json.access_token !== undefined){   
+            dispatch(
+                login({
+                    email: request.email
+                })
+            )         
             localStorage.setItem('auth_token',json.access_token);
             navigate('/');
         }else{
@@ -36,7 +46,6 @@ export default function Login(){
                 text: 'Datos incorrectos',
             })
         }
-        
     }
 
     return (

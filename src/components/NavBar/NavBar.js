@@ -3,13 +3,18 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { BsFillPersonFill } from 'react-icons/bs';
+import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom'
+import { selectUser, logout } from '../../features/userSlice';
 import './NavBar.css'
 
 function NavBar() {
   const navigate = useNavigate()
-  async function handleLogout() {        
+  const user = useSelector(selectUser)
+  const dispatch = useDispatch();
 
+  async function handleLogout() {   
+    
       var myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
@@ -24,10 +29,10 @@ function NavBar() {
       let response = await fetch(process.env.REACT_APP_API+"/api/auth/logout", requestOptions);
       let json = await response.json();
       if(json.success){
-          localStorage.removeItem('auth_token');
-          navigate('/');
+        dispatch(logout());
+        localStorage.removeItem('auth_token');
+        navigate('/');
       }
-      
   }
 
   return (
@@ -43,11 +48,11 @@ function NavBar() {
                 <Nav className="me-auto">
                   <Nav.Link><Link to={`/dashboard`}>Dashboard</Link></Nav.Link>
                   <Nav.Link>
-                  {localStorage.getItem('auth_token') === null ? (
-                    <Link to={`/login`}>Ingresar</Link> )
+                  { user ? (
+                    <a href="javascript:void(0)" onClick={handleLogout}>Salir</a> )
                   : (
-                    <a href="javascript:void(0)" onClick={handleLogout}>Salir</a>
-                  )}
+                    <Link to={`/login`}>Ingresar</Link> )
+                  }
                   </Nav.Link>
                 </Nav>
         </Navbar.Collapse>
@@ -56,10 +61,10 @@ function NavBar() {
           <NavDropdown.Item><Link to={`/dashboard`}>Dashboard</Link></NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item>
-          {localStorage.getItem('auth_token') === null  ? (
-            <Link to={`/login`}>Ingresar</Link> )
+          { user  ? (
+            <a href="javascript:void(0)" onClick={handleLogout}>Salir</a> )
           : (
-            <a href="javascript:void(0)" onClick={handleLogout}>Salir</a>
+            <Link to={`/login`}>Ingresar</Link>
           )}
           </NavDropdown.Item>
         </NavDropdown>
