@@ -3,6 +3,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
 import { login } from '../../features/userSlice'
+import AuthService from '../../services/auth'
 
 export default function Login(){
     const navigate = useNavigate()
@@ -10,27 +11,14 @@ export default function Login(){
     async function handleSubmit(event) {        
 
         event.preventDefault();
-        
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        
+                
         let request = {
             "email": event.currentTarget.elements.loginEmail.value,
             "password": event.currentTarget.elements.loginPassword.value
         }
-
-        var raw = JSON.stringify(request);
-
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
-        };
-
-        let response = await fetch(process.env.REACT_APP_API+"/api/auth/login", requestOptions);
-        let json = await response.json();
         
+        let json = await AuthService.login(request)
+
         if(json.access_token !== undefined){   
             dispatch(
                 login({

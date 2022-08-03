@@ -7,32 +7,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import {Link, useNavigate} from 'react-router-dom'
 import { selectUser, logout } from '../../features/userSlice';
 import './NavBar.css'
+import AuthService from '../../services/auth'
 
 function NavBar() {
   const navigate = useNavigate()
   const user = useSelector(selectUser)
   const dispatch = useDispatch();
 
-  async function handleLogout() {   
-    
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "application/json");
-      myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
+  async function handleLogout() {       
 
-      var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: {},
-      redirect: 'follow'
-      };
+    let json = await AuthService.logout()
+    if(json.success){
+      dispatch(logout());
+      localStorage.removeItem('auth_token');
+      navigate('/');
+    }
 
-      let response = await fetch(process.env.REACT_APP_API+"/api/auth/logout", requestOptions);
-      let json = await response.json();
-      if(json.success){
-        dispatch(logout());
-        localStorage.removeItem('auth_token');
-        navigate('/');
-      }
   }
 
   return (
