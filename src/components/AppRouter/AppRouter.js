@@ -20,12 +20,10 @@ export default function AppRouter(){
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate replace to="/home" />} />
             <Route path="/course/:id" element={<Course/>} />
-            { user ? (
-                <Route path="/dashboard" element={<Dashboard />} />
-            )
-            : ( 
-                <Route path="/login" element={<Login />} />
-            )}            
+            { user ? 
+                <Route path="/dashboard" element={<Dashboard />} />            
+            :   <Route path="/login" element={<Login />} />
+            }            
             <Route path="/register" element={<Register />} />
         </Routes>
     </BrowserRouter>

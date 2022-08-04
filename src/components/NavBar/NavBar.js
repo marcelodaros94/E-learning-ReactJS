@@ -36,14 +36,21 @@ function NavBar() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link><Link to={`/dashboard`}>Dashboard</Link></Nav.Link>
+                  { user 
+                  ? 
+                  <>
+                    <Nav.Link>
+                      <Link to={`/dashboard`}>Dashboard</Link>
+                      </Nav.Link>
+                    <Nav.Link>
+                      <a href="javascript:void(0)" onClick={handleLogout}>Salir</a>
+                    </Nav.Link> 
+                  </>
+                  : 
                   <Nav.Link>
-                  { user ? (
-                    <a href="javascript:void(0)" onClick={handleLogout}>Salir</a> )
-                  : (
-                    <Link to={`/login`}>Ingresar</Link> )
-                  }
+                    <Link to={`/login`}>Ingresar</Link>
                   </Nav.Link>
+                  }
                 </Nav>
         </Navbar.Collapse>
         
