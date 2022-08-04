@@ -1,3 +1,21 @@
+const register = async (request) => {
+        
+    var raw = JSON.stringify(request);
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+    };
+
+    let response = await fetch(process.env.REACT_APP_API+"/api/auth/register", requestOptions);
+    return response.json();
+}
+
 const login = async (request) => {
 
     var raw = JSON.stringify(request);
@@ -34,7 +52,8 @@ const logout = async () => {
 
 const authService = {
     login,
-    logout
+    logout,
+    register
 }
 
 export default authService

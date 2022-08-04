@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
+import AuthService from '../../services/auth'
 
 export default function Register(){
 
@@ -7,25 +8,14 @@ export default function Register(){
 
         event.preventDefault();
 
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-
-        var raw = JSON.stringify({
+        let request = {
             "first_name": event.currentTarget.elements.registerFirstName.value,
             "last_name": event.currentTarget.elements.registerLastName.value,
             "email": event.currentTarget.elements.registerEmail.value,
             "password": event.currentTarget.elements.registerPassword.value
-        });
-
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw,
-        redirect: 'follow'
         };
-
-        let response = await fetch(process.env.REACT_APP_API+"/api/auth/register", requestOptions);
-        let json = await response.json();
+        
+        let json = await AuthService.register(request)
         
         Swal.fire({
             text: json.message
