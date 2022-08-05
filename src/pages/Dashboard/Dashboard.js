@@ -2,31 +2,21 @@ import React, { useState, useEffect } from 'react'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import CircularProgress from '../../components/CircularProgress/CircularProgress'
 import {Link} from 'react-router-dom'
+import AuthService from '../../services/auth'
 
 export default function Dashboard() {
     const [loader, setLoader] = useState(true)
     const [courses, setCourses] = useState([])
+    
+    async function getCourses(){            
+        let json = await AuthService.mycourses()
+        setCourses(json)
+        //Ocultar loader
+        setLoader(false)
+    }
 
-    const dataCourses=[
-        {
-            id: 2,
-            name: 'Psicología del Pro Wrestling',
-            progress: 60
-        }
-    ]
-
-    const getCourses = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(dataCourses)
-        }, 2000)
-    })
     useEffect(() => {
-        getCourses.then((data) => {
-            console.log("respuesta de promesa:", data)
-            setCourses(data)
-            //Ocultar loader
-            setLoader(false)
-        })
+        getCourses()
     }, [])
 
     return (          
@@ -49,7 +39,7 @@ export default function Dashboard() {
                                             {course.name}
                                         </div>
                                         <div className="col-md-4 col-sm-12">
-                                            <ProgressBar now={course.progress} label={`${course.progress}%`} />
+                                            <ProgressBar now={course.porcentaje} label={`${course.porcentaje}%`} />
                                         </div>
                                         <div className="col-md-4 col-sm-12">
                                             <Link className="btn btn-primary disabled" to={`/dashboard`}>Solicitar certificado</Link>

@@ -50,10 +50,28 @@ const logout = async () => {
     return response.json();
 }
 
+const mycourses = async () => {
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: {},
+        redirect: 'follow'
+    };
+
+    let response = await fetch(process.env.REACT_APP_API+"/api/auth/me", requestOptions);
+    return response.json();
+}
+
 const authService = {
     login,
     logout,
-    register
+    register,
+    mycourses
 }
 
 export default authService
