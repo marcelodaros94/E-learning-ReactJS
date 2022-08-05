@@ -1,45 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import Video from '../../components/Video/Video'
 import Details from '../../components/Details/Details'
+import CoursesService from '../../services/courses'
 
 export default function Course(){
     const [course, setCourse] = useState([])
     const [current, setCurrent] = useState([])
-    const dataCourse=
-    {
-        id: 2,
-        name: 'Psicología del Wrestling',
-        description: 'Siendo la lucha libre una narrativa más que una simple secuencia, llegamos a algo llamado la suspensión de la incredulidad',
-        price: 25.00,
-        img: 'rock_mankind.webp',
-        sessions: [
-            {
-                id: 11,
-                name: 'Introducción al curso',
-                description: 'Presentación de los temas a tratar a lo largo del curso',
-                video: 'intro.mp4'
-            },
-            {
-                id: 12,
-                name: 'Generación de emociones',
-                description: 'Ejemplificando cómo el desarrollo del personaje permite conectar',
-                video: 'emociones.mp4'
-            }
-        ]        
-    }
     
-    const getCourse= new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(dataCourse)
-        }, 2000)
-    })
+    const { id }=useParams()
+    
+    async function getCourse(id){            
+        let json = await CoursesService.getCourse(id)
+        setCourse(json)
+        setCurrent(json.sessions[0])
+    }
 
     useEffect(() => {
-        getCourse.then((data) => {
-            console.log("respuesta de promesa:", data)
-            setCourse(data)
-            setCurrent(data.sessions[0])
-        })
+        getCourse(id)
     }, [])
 
     return(
