@@ -1,51 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import Course from '../Course/Course'
 import CircularProgress from '../CircularProgress/CircularProgress'
+import CoursesService from '../../services/courses'
 export default function CourseList(){  
     const [loader, setLoader] = useState(true)
     const [courses, setCourses] = useState([])
-    const dataCourses=[/*
-        {
-            id: 1,
-            name: 'La influencia de la lucha mexicana',
-            description: 'Todo sobre uno de los estilos más populares, que va más allá de acrobacias elevadas y una tradición de máscaras',
-            price: 25.00,
-            img: 'tiger_pegasus.jpg'
-        },*/
-        {
-            id: 2,
-            name: 'Psicología del Pro Wrestling',
-            description: 'Siendo la lucha libre una narrativa más que una simple secuencia, llegamos a algo llamado la suspensión de la incredulidad',
-            price: 25.00,
-            img: 'rock_mankind.webp'
-        }/*,
-        {
-            id: 3,
-            name: 'Puroresu y la cultura japonesa',
-            description: 'La brutalidad del entretenimiento deportivo y altas calificaciones, termina por definir el Strong Style nipón',
-            price: 20.00,
-            img: 'naito.jpg'
-        },
-        {
-            id: 4,
-            name: 'Historia del Wrestling',
-            description: 'Un viaje a través de las contiendas que marcaron un antes y un después en la lucha profesional americana',
-            price: 20.00,
-            img: 'hart.jpg'
-        }*/
-    ]  
-    const getCourses = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(dataCourses)
-        }, 2000)
-    })
+    
+    async function getCourses(){            
+        let json = await CoursesService.getCourses()
+        setCourses(json)
+        //Ocultar loader
+        setLoader(false)
+    }
+
     useEffect(() => {
-        getCourses.then((data) => {
-            console.log("respuesta de promesa:", data)
-            setCourses(data)
-            //Ocultar loader
-            setLoader(false)
-        })
+        getCourses()
     }, [])
 
     return(
