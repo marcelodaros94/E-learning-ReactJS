@@ -1,33 +1,21 @@
-const getCourses = async () => {
-    
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");   
-    myHeaders.append("accept","application/json");
+import axios from "axios";
 
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
+const getCourses = () => {    
 
-    let response = await fetch(process.env.REACT_APP_API+"/api/course", requestOptions);
-    return response.json();
+    return axios.get(process.env.REACT_APP_API+"/api/course")
+    .then((response) => {
+        return response.data;
+    })
+
 }
 
-const getCourse = async (id) => {
+const getCourse = (id) => {
+
+    return axios.get(process.env.REACT_APP_API+"/api/course/"+id)
+    .then((response) => {
+        return response.data;
+    })
     
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");    
-    myHeaders.append("accept","application/json");
-
-    var requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        redirect: 'follow'
-    };
-
-    let response = await fetch(process.env.REACT_APP_API+"/api/course/"+id, requestOptions);
-    return response.json();
 }
 
 const coursesService = {

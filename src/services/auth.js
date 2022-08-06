@@ -1,74 +1,85 @@
+import axios from "axios";
+
 const register = async (request) => {
         
     var raw = JSON.stringify(request);
-    
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");   
-    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'POST',
-        headers: myHeaders,
-        body: raw,
+        url: process.env.REACT_APP_API+"/api/auth/register",
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json"
+        },
+        data: raw,
         redirect: 'follow'
     };
 
-    let response = await fetch(process.env.REACT_APP_API+"/api/auth/register", requestOptions);
-    return response.json();
+    return axios(requestOptions)
+    .then((response) => {
+        return response.data;
+    })
 }
 
 const login = async (request) => {
 
     var raw = JSON.stringify(request);
-    
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");   
-    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'POST',
-        headers: myHeaders,
-        body: raw,
+        url: process.env.REACT_APP_API+"/api/auth/login",
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json"
+        },
+        data: raw,
         redirect: 'follow'
     };
 
-    let response = await fetch(process.env.REACT_APP_API+"/api/auth/login", requestOptions);
-    return response.json();
+    return axios(requestOptions)
+    .then((response) => {
+        return response.data;
+    })
 }
 
 const logout = async () => {
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");   
-    myHeaders.append("accept","application/json");
-    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
 
     var requestOptions = {
         method: 'POST',
-        headers: myHeaders,
-        body: {},
+        url: process.env.REACT_APP_API+"/api/auth/logout",
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("auth_token")
+        },
+        data: {},
         redirect: 'follow'
     };
 
-    let response = await fetch(process.env.REACT_APP_API+"/api/auth/logout", requestOptions);
-    return response.json();
+    return axios(requestOptions)
+    .then((response) => {
+        return response.data;
+    })
 }
 
 const mycourses = async () => {
     
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");   
-    myHeaders.append("accept","application/json");
-    myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
-
     var requestOptions = {
         method: 'POST',
-        headers: myHeaders,
-        body: {},
+        url: process.env.REACT_APP_API+"/api/auth/me",
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("auth_token")
+        },
+        data: {},
         redirect: 'follow'
     };
 
-    let response = await fetch(process.env.REACT_APP_API+"/api/auth/me", requestOptions);
-    return response.json();
+    return axios(requestOptions)
+    .then((response) => {
+        return response.data;
+    })
 }
 
 const authService = {
