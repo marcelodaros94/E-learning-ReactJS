@@ -3,7 +3,8 @@ const register = async (request) => {
     var raw = JSON.stringify(request);
     
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");   
+    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'POST',
@@ -21,7 +22,8 @@ const login = async (request) => {
     var raw = JSON.stringify(request);
     
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");   
+    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'POST',
@@ -36,7 +38,8 @@ const login = async (request) => {
 
 const logout = async () => {
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");   
+    myHeaders.append("accept","application/json");
     myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
 
     var requestOptions = {
@@ -53,7 +56,8 @@ const logout = async () => {
 const mycourses = async () => {
     
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");   
+    myHeaders.append("accept","application/json");
     myHeaders.append("Authorization", "Bearer "+localStorage.getItem("auth_token"));
 
     var requestOptions = {

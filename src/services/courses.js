@@ -1,7 +1,8 @@
 const getCourses = async () => {
     
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");   
+    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'GET',
@@ -16,7 +17,8 @@ const getCourses = async () => {
 const getCourse = async (id) => {
     
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Content-Type", "application/json");    
+    myHeaders.append("accept","application/json");
 
     var requestOptions = {
         method: 'GET',
