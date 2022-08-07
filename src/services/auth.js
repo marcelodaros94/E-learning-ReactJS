@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from './api';
 
 const register = async (request) => {
         
@@ -15,7 +16,7 @@ const register = async (request) => {
         redirect: 'follow'
     };
 
-    return axios(requestOptions)
+    return api(requestOptions)
     .then((response) => {
         return response.data;
     })
@@ -36,7 +37,7 @@ const login = async (request) => {
         redirect: 'follow'
     };
 
-    return axios(requestOptions)
+    return api(requestOptions)
     .then((response) => {
         return response.data;
     })
@@ -56,7 +57,7 @@ const logout = async () => {
         redirect: 'follow'
     };
 
-    return axios(requestOptions)
+    return api(requestOptions)
     .then((response) => {
         return response.data;
     })
@@ -76,7 +77,7 @@ const mycourses = async () => {
         redirect: 'follow'
     };
 
-    return axios(requestOptions)
+    return api(requestOptions)
     .then((response) => {
         return response.data;
     })
