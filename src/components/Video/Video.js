@@ -1,10 +1,21 @@
 import React, { useState, useEffect } from 'react'
-export default function Video({ data }){    
-    console.log(data);
+import VideoService from '../../services/video'
+
+export default function Video({ data }){  
+
+    const handleSrcChange = (event) => {
+        event.target.addEventListener("ended", () => handleCompleteVideo(event));
+    }
+
+    const handleCompleteVideo = (event) => {
+        let json = VideoService.updateProgress(event.target.id)
+    }
+
+
     return (
         <>
-            <div class="videoWrapper">
-                <video controls width="560" height="349" class="embed-responsive-item" src={process.env.PUBLIC_URL+'/assets/videos/'+data.video} />
+            <div className="videoWrapper">
+                <video onLoadedMetadata={handleSrcChange} id={data.id} controls width="550" height="349" class="embed-responsive-item" src={process.env.PUBLIC_URL+'/assets/videos/'+data.video} />
             </div>
         </>
     )
