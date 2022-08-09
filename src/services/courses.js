@@ -32,9 +32,33 @@ const getCourse = (id) => {
     
 }
 
+const takeCourse = (id) => {
+
+    var requestOptions = {
+        method: 'POST',
+        url: process.env.REACT_APP_API+"/api/auth/progress",
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("auth_token")
+        },
+        data: {
+            id: id
+        },
+        redirect: 'follow'
+    };
+    
+    return api(requestOptions)
+    .then((response) => {
+        return response.data;
+    })
+    
+}
+
 const coursesService = {
     getCourse,
-    getCourses
+    getCourses,
+    takeCourse
 }
 
 export default coursesService

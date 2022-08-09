@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import Video from '../../components/Video/Video'
 import Details from '../../components/Details/Details'
 import CoursesService from '../../services/courses'
+import Swal from 'sweetalert2'
 
 export default function Course(){
     const [course, setCourse] = useState([])
@@ -14,6 +15,14 @@ export default function Course(){
         let json = await CoursesService.getCourse(id)
         setCourse(json)
         setCurrent(json.sessions[0])
+    }
+
+    async function handlePurchase(){            
+        let json = await CoursesService.takeCourse(id)
+        Swal.fire({
+            text: json.message,
+        })
+        
     }
 
     useEffect(() => {
@@ -33,7 +42,7 @@ export default function Course(){
                             </div> 
                         :
                             <div className="col-md-6">
-                                <a href='javascript:void(0)' className='btn btn-success'>
+                                <a href='javascript:void(0)' onClick={handlePurchase} className='btn btn-success'>
                                     Comprar
                                 </a>
                             </div> 
