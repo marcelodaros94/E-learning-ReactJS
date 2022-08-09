@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import VideoService from '../../services/video'
 
-export default function Video({ data }){  
+export default function Video({ data, progressChanger }){  
 
     const handleSrcChange = (event) => {
         event.target.addEventListener("ended", () => handleCompleteVideo(event));
@@ -9,6 +9,8 @@ export default function Video({ data }){
 
     const handleCompleteVideo = (event) => {
         let json = VideoService.updateProgress(event.target.id)
+        data.porcentaje=100
+        progressChanger(data)
     }
 
 

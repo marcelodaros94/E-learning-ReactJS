@@ -17,6 +17,16 @@ export default function Course(){
         setCurrent(json.sessions[0])
     }
 
+    function updateProgress(complete_video){   
+        let new_sessions = course.sessions.map(video =>
+            video.id === complete_video.id ? complete_video : video
+        )
+        setCourse({
+            ...course,
+            sessions: new_sessions
+        })
+    }
+
     async function handlePurchase(){            
         let json = await CoursesService.takeCourse(id)
         Swal.fire({
@@ -38,7 +48,7 @@ export default function Course(){
                             <div className="col-md-6">
                                 <h1>{ course.name }</h1>
                                 <hr></hr>
-                                <Video data={ current } />
+                                <Video data={ current } progressChanger={updateProgress}/>
                             </div> 
                         :
                             <div className="col-md-6">
@@ -53,7 +63,7 @@ export default function Course(){
                         </div> 
                     }
                     <div className="col-md-6">
-                         <Details details={ course.sessions }  currentChanger={setCurrent} />
+                         <Details details={ course.sessions }  currentChanger={setCurrent}/>
                     </div> 
                 </div>
             </div>    

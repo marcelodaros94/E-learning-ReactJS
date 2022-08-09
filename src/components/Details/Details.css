@@ -11,6 +11,8 @@
     content: 'Completado';
     width: fit-content;
     background: #b58906;
+    color:white;
+    font-weight: 500;
     display: block;
     padding: 5px;
     border-radius: 5px;
