@@ -10,9 +10,12 @@ export default function Video({ data, progressChanger }){
     const handleCompleteVideo = (event) => {
         let json = VideoService.updateProgress(event.target.id)
         data.porcentaje=100
-        progressChanger(data)
+        progressChanger(data)//update in State
     }
 
+    useEffect(() => {
+        document.querySelector("video").play()
+    }, [data])
 
     return (
         <>

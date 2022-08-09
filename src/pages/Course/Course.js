@@ -18,9 +18,14 @@ export default function Course(){
     }
 
     function updateProgress(complete_video){   
-        let new_sessions = course.sessions.map(video =>
-            video.id === complete_video.id ? complete_video : video
-        )
+        let new_sessions = course.sessions.map((video,index) => {
+            if(video.id === complete_video.id){
+                setCurrent(course.sessions[index+1])
+                return complete_video
+            }else{
+                return video
+            }
+        })
         setCourse({
             ...course,
             sessions: new_sessions
