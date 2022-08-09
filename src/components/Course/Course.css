@@ -1,5 +1,18 @@
-.course{
-    margin:5px;
+.course::before {
+    content: 'Free';
+    background: darkgoldenrod;
+    padding: 1.5px 5px;
+    border-radius: 3.5px;
+    font-weight: 500;
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 10px;
+}
+
+.course {
+    margin: 5px;
+    position: relative;
 }
 .course img {
     max-width: 100%;
