@@ -7,3 +7,11 @@
     position:relative;
     padding-left:25px;
 }
+.detail-complete::before {
+    content: 'Completado';
+    width: fit-content;
+    background: #b58906;
+    display: block;
+    padding: 5px;
+    border-radius: 5px;
+}

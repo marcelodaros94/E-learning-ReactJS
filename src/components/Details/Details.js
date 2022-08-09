@@ -10,7 +10,7 @@ export default function Details({ details, currentChanger }){
         <>
             {
                 details.map(detail => 
-                    <div className="detail-cont" onClick={() => currentChanger(detail)}><AiFillPlayCircle/><b>{ detail.name }</b>. { detail.description }</div>    
+                    <div className={'detail-cont' + (detail.porcentaje==100 ? ' detail-complete' : ' ') } onClick={() => currentChanger(detail)}><AiFillPlayCircle/><b>{ detail.name }</b>. { detail.description }</div>    
                 )
             }
         </>

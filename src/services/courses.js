@@ -1,4 +1,5 @@
 import axios from "axios";
+import api from "./api";
 
 const getCourses = () => {    
 
@@ -11,7 +12,20 @@ const getCourses = () => {
 
 const getCourse = (id) => {
 
-    return axios.get(process.env.REACT_APP_API+"/api/course/"+id)
+    let auth=localStorage.getItem("auth_token") ? 'auth/' : ''
+
+    var requestOptions = {
+        method: 'GET',
+        url: process.env.REACT_APP_API+"/api/"+auth+"course/"+id,
+        headers: {
+            "Content-Type": "application/json",   
+            "accept": "application/json",
+            "Authorization": "Bearer "+localStorage.getItem("auth_token")
+        },
+        redirect: 'follow'
+    };
+    
+    return api(requestOptions)
     .then((response) => {
         return response.data;
     })
