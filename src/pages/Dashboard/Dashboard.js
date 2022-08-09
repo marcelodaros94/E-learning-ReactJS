@@ -39,10 +39,10 @@ export default function Dashboard() {
                                             {course.name}
                                         </div>
                                         <div className="col-md-4 col-sm-12">
-                                            <ProgressBar now={course.porcentaje} label={`${course.porcentaje}%`} />
+                                            <ProgressBar now={course.porcentaje} label={`${Math.round(course.porcentaje)}%`} />
                                         </div>
                                         <div className="col-md-4 col-sm-12">
-                                            <Link className="btn btn-primary disabled" to={`/dashboard`}>Solicitar certificado</Link>
+                                            <Link className={"btn btn-primary " + (course.porcentaje == 100 || " disabled")} to={`/dashboard`}>Solicitar certificado</Link>
                                         </div>
                                     </li>
                                 )
