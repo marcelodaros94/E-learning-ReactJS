@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
-import './Course.css';
+import './CourseBox.css';
 import {Link} from 'react-router-dom'
 export default function Course({ data }){
     

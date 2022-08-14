@@ -1,5 +1,5 @@
 import React from 'react'
-import Course from '../Course/Course'
+import Course from '../CourseBox/CourseBox'
 import { useSelector } from "react-redux";
 import CircularProgress from '../CircularProgress/CircularProgress';
 

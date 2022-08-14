@@ -5,7 +5,10 @@ export const coursesSlice = createSlice({
     initialState:{
         courses: [],
         loader: false,
-        error: ''
+        error: '',
+        currentCourse: {
+          sessions: []
+        }
     },
     reducers:{
         fetchCoursesLoading: (state) => {
@@ -19,6 +22,21 @@ export const coursesSlice = createSlice({
         fetchCoursesFail: (state, { payload }) => {
           state.loader = false;
           state.error = payload;
+        },
+        fetchSingleCourseLoading: (state) => {
+          state.loader = true;
+        },
+        fetchSingleCourseSuccess: (state, { payload }) => {
+          state.currentCourse = payload;
+          state.loader = false;
+          state.error = "";
+        },
+        fetchSingleCourseFail: (state, { payload }) => {
+          state.loader = false;
+          state.error = payload;
+        },
+        updateSessions: (state, { payload }) => {
+          state.currentCourse.sessions[payload].porcentaje = 100;
         }
     }
 })
@@ -26,7 +44,11 @@ export const coursesSlice = createSlice({
 export const { 
     fetchCoursesLoading,
     fetchCoursesSuccess,
-    fetchCoursesFail
+    fetchCoursesFail,
+    fetchSingleCourseLoading,
+    fetchSingleCourseSuccess,
+    fetchSingleCourseFail,
+    updateSessions
 } = coursesSlice.actions;
 
 export default coursesSlice.reducer;
