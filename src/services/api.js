@@ -39,7 +39,7 @@ instance.interceptors.response.use(
             return instance(originalConfig);*/
             store.dispatch(logout());
             localStorage.removeItem('auth_token');
-            alert('Su sesión ha expirado');
+            alert('Error cargando sesión. Intente reingresar');
         } catch (_error) {
             return Promise.reject(_error);
         }
