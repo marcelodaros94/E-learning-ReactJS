@@ -3,19 +3,39 @@ import { createSlice } from "@reduxjs/toolkit";
 export const userSlice = createSlice({
     name: "user",
     initialState:{
-        user: null
+        user: null,
+        loader: false,
+        error: []
     },
     reducers:{
-        login: (state,action) => {
-            state.user = action.payload;
+        loginPending: (state) => {
+          state.loader = true;
         },
-        logout: (state) => {
+        loginSuccess: (state, { payload }) => {
+          state.loader = false;
+          state.user = payload;
+          state.error = "";
+        },
+        loginFail: (state, { payload }) => {
+          state.loader = false;
+          state.error = payload;
+        },
+        logoutPending: (state) => {
+            state.loader = true;
+        },
+        logoutSuccess: (state, { payload }) => {
+            state.loader = false;
             state.user = null;
+            state.error = "";
+        },
+        logoutFail: (state, { payload }) => {
+            state.loader = false;
+            state.error = payload;
         }
     }
 })
 
-export const { login, logout } = userSlice.actions;
+export const { loginPending, loginSuccess, loginFail, logoutPending, logoutSuccess, logoutFail } = userSlice.actions;
 
 //it will help us to grab the data
 export const selectUser = (state) => state.user.user;

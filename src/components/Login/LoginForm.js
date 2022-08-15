@@ -2,7 +2,7 @@ import React from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useDispatch } from 'react-redux'
-import { login } from '../../features/userSlice'
+import { loginPending, loginSuccess, loginFail } from "../../features/userSlice";
 import AuthService from '../../services/auth'
 
 export default function LoginForm(){
@@ -18,17 +18,20 @@ export default function LoginForm(){
             "password": event.currentTarget.elements.loginPassword.value
         }
         
+        dispatch(loginPending()) 
+
         let json = await AuthService.login(request)
 
         if(json.access_token !== undefined){   
             dispatch(
-                login({
+                loginSuccess({
                     email: request.email
                 })
             )         
             localStorage.setItem('auth_token',json.access_token);
             navigate('/');
         }else{
+            dispatch(loginFail('Datos incorrectos'))         
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

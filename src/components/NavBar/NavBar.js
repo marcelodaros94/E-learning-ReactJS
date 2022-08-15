@@ -8,6 +8,7 @@ import {Link, useNavigate} from 'react-router-dom'
 import { selectUser, logout } from '../../features/userSlice';
 import './NavBar.css'
 import AuthService from '../../services/auth'
+import { logoutPending, logoutSuccess, logoutFail } from "../../features/userSlice";
 
 function NavBar() {
   const navigate = useNavigate()
@@ -16,11 +17,14 @@ function NavBar() {
 
   async function handleLogout() {       
 
+    dispatch(logoutPending());
     let json = await AuthService.logout()
     if(json.success){
-      dispatch(logout());
+      dispatch(logoutSuccess());
       localStorage.removeItem('auth_token');
       navigate('/');
+    }else{
+      dispatch(logoutFail('Error. Intente más tarde'));
     }
 
   }

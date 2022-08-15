@@ -1,8 +1,6 @@
 import axios from "axios";       
-import { Navigate } from "react-router-dom";
 import store from '../app/store';
-import { logout } from '../features/userSlice';
-import {Link, useNavigate} from 'react-router-dom'
+import { logoutSuccess } from '../features/userSlice';
 
 const instance = axios.create();
 
@@ -26,20 +24,14 @@ instance.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-    if (originalConfig.url !== "/auth/login" && err.response) {
+    if (originalConfig.url !== process.env.REACT_APP_API+"/api/auth/login" && err.response) {
       // Access Token was expired
       if (err.response.status === 401 && !originalConfig._retry) {
         originalConfig._retry = true;
         try {
-            /*const rs = await instance.post(process.env.REACT_APP_API+"/api/auth/refresh", {
-                refreshToken: localStorage.getItem('auth_token'),
-            });
-            const { accessToken } = rs.access_token;
-            localStorage.setItem(accessToken);
-            return instance(originalConfig);*/
-            store.dispatch(logout());
+            store.dispatch(logoutSuccess());
             localStorage.removeItem('auth_token');
-            alert('Error cargando sesión. Intente reingresar');
+            alert('Su sesión ha expirado');
         } catch (_error) {
             return Promise.reject(_error);
         }
