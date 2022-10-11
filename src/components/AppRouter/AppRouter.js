@@ -6,6 +6,7 @@ import Dashboard from '../../pages/Dashboard/Dashboard.js'
 import Login from '../../pages/Login/Login.js'
 import Register from '../../pages/Register/Register.js'
 import NavBar from '../../components/NavBar/NavBar'
+import LoggedInNavBar from '../../components/LoggedInNavBar/LoggedInNavBar'
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../features/userSlice';
 
@@ -15,7 +16,7 @@ export default function AppRouter(){
 
     return (
     <BrowserRouter basename={`/${process.env.PUBLIC_URL}`}>
-        <NavBar/>
+        { user ? <LoggedInNavBar/> : <NavBar/> }
         <Routes>
             <Route path="/home" element={<Home />} />
             <Route path="/" element={<Navigate replace to="/home" />} />

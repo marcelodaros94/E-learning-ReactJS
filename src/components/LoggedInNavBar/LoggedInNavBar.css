@@ -1,0 +1,26 @@
+.dropdown-menu[data-bs-popper]{
+    right:0;
+    left: auto;
+}
+@media screen and (min-width:769px){
+    #basic-navbar-nav{
+        display:none !important;
+    }
+    .navbar-collapse {
+        display:none !important;
+    }
+}
+@media screen and (max-width:768px){
+    .navbar-toggler {
+        order: 2;
+    }
+    .navbar-collapse {
+        order: 3;
+    }
+    #basic-nav-dropdown{
+        display:none;
+    }
+    .navbar-toggler {
+        padding: 5px;
+    }
+}
